@@ -161,3 +161,20 @@ fn player_is_finished() -> bool {
     }
 
 }
+
+// " A Hard reset fixes all"
+//     - unknown
+
+// Let there be code !!!
+
+//reset method
+
+fn reset(&mut self) {
+    self.current_turn = Turn::Player;
+    self.board = vec![
+        vec![String::from("1"), String::from(2), String::from("3")],
+        vec![String::from("4"), String::from("5"), String::from("6")],
+        vec![String::from("7"), String::from("8"), String::from("9")],
+        ];
+}
+
