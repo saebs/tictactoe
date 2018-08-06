@@ -178,4 +178,13 @@ fn reset(&mut self) {
         ];
 }
 
+// get next Turn
+
+fn gen_next_turn(&self) -> Turn {
+    match self.current_turn {
+        Turn::Player => Turn::Bot,
+        Turn::Bot => Turn::Player,
+    }
+}
+
 
