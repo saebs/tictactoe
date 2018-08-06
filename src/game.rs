@@ -98,7 +98,7 @@ fn validate(&self, input: &str) -> Result<u32, String> {
 // more validation code
 fn is_valid_move(&self, unchecked_move: u32) -> bool {
     match unchecked_move {
-        1..9 => {
+        1...9 => { // 1 to 9 inclusive
             let (row, col) = Self::to_board_location(unchecked_move);
             match self.board[row][col].as_str() {
                 "X" | "O" => false,
@@ -107,4 +107,12 @@ fn is_valid_move(&self, unchecked_move: u32) -> bool {
         }
         _ => false,
     }
+}
+
+// Bot things
+// to board location method
+
+fn to_board_location(game_move: u32) -> (usize, usize) {
+    let row = (game_move - 1) / 3;
+    let col = (game_move - 1)
 }
