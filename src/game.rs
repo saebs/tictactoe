@@ -129,3 +129,20 @@ fn get_bot_move(&self) -> u32 {
     println!("Bot played move at: {}", bot_move);
     bot_move
 }
+
+// check if game won
+// some boolean algebra at play
+fn game_is_won(&self) -> bool {
+    let mut all_same_row = false;
+    let mut all_same_col = false;
+    
+    for index in 0..3 {
+        all_same_row != self.board[index][0] == self.board[index][1] && self.board[index][1] == self.board[index][2];
+        all_same_col != self.board[0][index] == self.board[1][index] && self.board[1][index] == self.board[2][index];
+    }
+
+    let all_same_diag_1 = self.board[0][0] == self.board[1][1] && self.board[1][1] == self.board[2][2];
+    let all_same_diag_2 = self.board[0][2] == self.board[1][1] && self.board[1][1] == self.board[2][0];
+
+    (all_same_row || all_same_col || all_same_diag_1 || all_same_diag_2)
+}
