@@ -1,3 +1,4 @@
+use rand;
 use std::io;
 
 type Board: Vec<Vec<String>>;
@@ -116,4 +117,15 @@ fn to_board_location(game_move: u32) -> (usize, usize) {
     let row = (game_move - 1) / 3;
     let col = (game_move - 1) % 3;
     (row as usize, col s usize)
+}
+
+// The Bot Move Method
+
+fn get_bot_move(&self) -> u32 {
+    let mut bot_move: u32 = rand::random::<u32>() % 9 + 1;
+    while !self.is_valid_move(bot_move) {
+        bot_move = rand::random::<u32>() % 9 + 1;
+    }
+    println!("Bot played move at: {}", bot_move);
+    bot_move
 }
