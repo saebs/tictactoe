@@ -81,3 +81,16 @@ fn get_player_move(&self) -> u32 {
         
     }
 }
+
+fn validate(&self, input: &str) -> Result<u32, String> {
+    match input.trim().parse::<u32>() {
+        Err(_) => Err(String::from("Please input a valid unsigned integer!")),
+        Ok(number) => {
+            if self.is_valid_move(number) {
+                Ok(number)
+            } else {
+                Err(String::from("Please input a number between 1 and 9 ,not already chosen!"))
+            }
+        } // Check this part 
+    }
+}

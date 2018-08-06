@@ -1,1 +1,1 @@
-# Small tic tac toe in Rust
+# Tic Tac Toe in Rust
