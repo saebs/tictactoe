@@ -1,7 +1,7 @@
 use rand;
 use std::io;
 
-type Board: Vec<Vec<String>>;
+type Board = Vec<Vec<String>>;
 
 enum Turn {
     Player,
@@ -14,25 +14,23 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new() - Game {
+    pub fn new() -> Game {
         let first_row = vec![String::from("1"), String::from("2"), String::from("3")];
-        let second_row = vec![String:from("4"), String::from("5"), String::from("6")];
+        let second_row = vec![String::from("4"), String::from("5"), String::from("6")];
         let third_row = vec![String::from("7"), String::from("8"), String::from("9")];
         Game {
             board: vec![first_row, second_row, third_row],
             current_turn: Turn::Player,
         }
     }
-}
-
 
 pub fn play_game(&mut self) {
     let mut finished = false;
 
     while !finished {
-        self.play_turn;
+        self.play_turn();
         if self.game_is_won() {
-            self.print_board;
+            self.print_board();
             match self.current_turn {
                 Turn::Player => println!("You Won!"),
                 Turn::Bot => println!("You Lost!"),
@@ -59,8 +57,8 @@ fn play_turn(&mut self) {
 // Printing Game board
 
 fn print_board(&self) {
-    let seperator = "+---+---+";
-    println!("\n{}", seperatora);
+    let seperator = "+---+---+---+";
+    println!("\n{}", seperator);
     for row in &self.board {
         println!("| {} |\n{}",row.join(" | "), seperator);
     }
@@ -72,7 +70,7 @@ fn get_player_move(&self) -> u32 {
     loop {
         let mut player_input = String::new();
         println!("\n Please enter your move (an integer between 1 and 9)");
-        match std::io::read_line(&mut player_input) {
+        match io::stdin().read_line(&mut player_input) {
             Err(_) => println!("Error reading input , please try again"),
             Ok(_) => match self.validate(&player_input) {
                 Err(err) => println!("{}", err),
@@ -116,7 +114,7 @@ fn is_valid_move(&self, unchecked_move: u32) -> bool {
 fn to_board_location(game_move: u32) -> (usize, usize) {
     let row = (game_move - 1) / 3;
     let col = (game_move - 1) % 3;
-    (row as usize, col s usize)
+    (row as usize, col as usize)
 }
 
 // The Bot Move Method
@@ -137,8 +135,8 @@ fn game_is_won(&self) -> bool {
     let mut all_same_col = false;
     
     for index in 0..3 {
-        all_same_row != self.board[index][0] == self.board[index][1] && self.board[index][1] == self.board[index][2];
-        all_same_col != self.board[0][index] == self.board[1][index] && self.board[1][index] == self.board[2][index];
+        all_same_row |= self.board[index][0] == self.board[index][1] && self.board[index][1] == self.board[index][2];
+        all_same_col |= self.board[0][index] == self.board[1][index] && self.board[1][index] == self.board[2][index];
     }
 
     let all_same_diag_1 = self.board[0][0] == self.board[1][1] && self.board[1][1] == self.board[2][2];
@@ -172,7 +170,7 @@ fn player_is_finished() -> bool {
 fn reset(&mut self) {
     self.current_turn = Turn::Player;
     self.board = vec![
-        vec![String::from("1"), String::from(2), String::from("3")],
+        vec![String::from("1"), String::from("2"), String::from("3")],
         vec![String::from("4"), String::from("5"), String::from("6")],
         vec![String::from("7"), String::from("8"), String::from("9")],
         ];
@@ -186,5 +184,9 @@ fn gen_next_turn(&self) -> Turn {
         Turn::Bot => Turn::Player,
     }
 }
+
+}
+
+
 
 
