@@ -94,3 +94,17 @@ fn validate(&self, input: &str) -> Result<u32, String> {
         } // Check this part 
     }
 }
+
+// more validation code
+fn is_valid_move(&self, unchecked_move: u32) -> bool {
+    match unchecked_move {
+        1..9 => {
+            let (row, col) = Self::to_board_location(unchecked_move);
+            match self.board[row][col].as_str() {
+                "X" | "O" => false,
+                _ => true,
+            }
+        }
+        _ => false,
+    }
+}
