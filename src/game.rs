@@ -32,8 +32,8 @@ pub fn play_game(&mut self) {
         if self.game_is_won() {
             self.print_board();
             match self.current_turn {
-                Turn::Player => println!("You Won!"),
-                Turn::Bot => println!("You Lost!"),
+                Turn::Player => println!(" \u{1f60a}  You Won!"),
+                Turn::Bot => println!(" \u{1f601}  You Lost!"),
             };
             finished = Self::player_is_finished();
             self.reset();
@@ -83,12 +83,12 @@ fn get_player_move(&self) -> u32 {
 
 fn validate(&self, input: &str) -> Result<u32, String> {
     match input.trim().parse::<u32>() {
-        Err(_) => Err(String::from("Please input a valid unsigned integer!")),
+        Err(_) => Err(String::from(" \u{1f648} Please input a valid unsigned integer!") ),
         Ok(number) => {
             if self.is_valid_move(number) {
                 Ok(number)
             } else {
-                Err(String::from("Please input a number between 1 and 9 ,not already chosen!"))
+                Err(String::from(" \u{1f620} Please input a number between 1 and 9 ,not already chosen!"))
             }
         } // Check this part 
     }
