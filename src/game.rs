@@ -141,8 +141,8 @@ fn game_is_won(&self) -> bool {
 
     let all_same_diag_1 = self.board[0][0] == self.board[1][1] && self.board[1][1] == self.board[2][2];
     let all_same_diag_2 = self.board[0][2] == self.board[1][1] && self.board[1][1] == self.board[2][0];
-
     (all_same_row || all_same_col || all_same_diag_1 || all_same_diag_2)
+    // to do logic for drwa condition
 }
 
 // Player is finished method
