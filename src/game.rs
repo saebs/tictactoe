@@ -114,5 +114,6 @@ fn is_valid_move(&self, unchecked_move: u32) -> bool {
 
 fn to_board_location(game_move: u32) -> (usize, usize) {
     let row = (game_move - 1) / 3;
-    let col = (game_move - 1)
+    let col = (game_move - 1) % 3;
+    (row as usize, col s usize)
 }
